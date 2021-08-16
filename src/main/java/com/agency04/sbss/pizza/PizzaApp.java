@@ -12,6 +12,10 @@ public class PizzaApp {
         PizzaDeliveryService pizzaDeliveryService = context.getBean("pizzaDeliveryService", PizzaDeliveryService.class);
         System.out.println(pizzaDeliveryService.orderPizza(new QuattroFormaggiPizza()));
 
+        //test for pizzeria service
+        PizzeriaService pizzeriaService = context.getBean(PizzeriaService.class);
+        System.out.println(pizzeriaService.makePizza(new MargheritaPizza()));
+
         context.close();
     }
 

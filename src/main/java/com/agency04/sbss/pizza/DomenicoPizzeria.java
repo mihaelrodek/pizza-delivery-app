@@ -1,12 +1,14 @@
 package com.agency04.sbss.pizza;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+@Primary
 @Service
 public class DomenicoPizzeria implements PizzeriaService {
 

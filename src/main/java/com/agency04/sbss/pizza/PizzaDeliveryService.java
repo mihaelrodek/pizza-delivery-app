@@ -5,4 +5,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class PizzaDeliveryService {
 
+    public String orderPizza(Pizza pizza){
+        return "description";
+    }
+
 }

@@ -8,7 +8,7 @@ public class PizzaApp {
 
 
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
-        
+
     }
 
 }

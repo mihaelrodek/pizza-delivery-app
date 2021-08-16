@@ -1,8 +1,13 @@
 package com.agency04.sbss.pizza;
 
-public class SantaMariaPizzeria implements PizzeriaService{
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@Component
+public class RajPizzeria implements PizzeriaService{
+    @Value("${foo.name}")
     private String name;
+    @Value("${foo.address}")
     private String address;
 
     @Override

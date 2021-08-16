@@ -9,14 +9,12 @@ public class PizzaApp {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
         System.out.println();
 
-        PizzaDeliveryService firstDelivery = context.getBean("deliveryFirst", PizzaDeliveryService.class);
-        firstDelivery.orderPizza(new MargheritaPizza());
-
-        PizzaDeliveryService secondDelivery = context.getBean("deliverySecond", PizzaDeliveryService.class);
-        secondDelivery.orderPizza(new QuattroFormaggiPizza());
+        PizzaDeliveryService pizzaDeliveryService = context.getBean("pizzaDeliveryService", PizzaDeliveryService.class);
+        pizzaDeliveryService.orderPizza(new MargheritaPizza());
 
         context.close();
-
     }
 
 }
+
+

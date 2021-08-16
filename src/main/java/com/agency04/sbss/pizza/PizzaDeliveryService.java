@@ -13,6 +13,7 @@ public class PizzaDeliveryService {
         System.out.println("PizzaDeliveryService: inside no-arg constructor");
     }
 
+    @Autowired
     public PizzaDeliveryService(PizzeriaService pizzeriaService) {
         this.pizzeriaService = pizzeriaService;
         System.out.println("PizzaDeliveryService: inside arg constructor");

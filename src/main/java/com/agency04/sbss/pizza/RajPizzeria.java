@@ -2,8 +2,9 @@ package com.agency04.sbss.pizza;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class RajPizzeria implements PizzeriaService{
     @Value("${foo.name}")
     private String name;

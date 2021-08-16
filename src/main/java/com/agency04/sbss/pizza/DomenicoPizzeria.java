@@ -2,11 +2,12 @@ package com.agency04.sbss.pizza;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Component(value = "domenicoPizzeria")
+@Service
 public class DomenicoPizzeria implements PizzeriaService {
 
     private String name;

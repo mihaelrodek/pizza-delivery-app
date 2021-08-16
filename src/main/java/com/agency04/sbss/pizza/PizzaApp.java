@@ -10,7 +10,7 @@ public class PizzaApp {
         System.out.println();
 
         PizzaDeliveryService pizzaDeliveryService = context.getBean("pizzaDeliveryService", PizzaDeliveryService.class);
-        pizzaDeliveryService.orderPizza(new MargheritaPizza());
+        System.out.println(pizzaDeliveryService.orderPizza(new MargheritaPizza()));
 
         context.close();
     }

@@ -3,8 +3,9 @@ package com.agency04.sbss.pizza;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class PizzaDeliveryService {
 
     private PizzeriaService pizzeriaService;
@@ -13,7 +14,6 @@ public class PizzaDeliveryService {
         System.out.println("PizzaDeliveryService: inside no-arg constructor");
     }
 
-    @Autowired
     public PizzaDeliveryService(PizzeriaService pizzeriaService) {
         this.pizzeriaService = pizzeriaService;
         System.out.println("PizzaDeliveryService: inside arg constructor");
@@ -26,8 +26,8 @@ public class PizzaDeliveryService {
     }
 
     public String orderPizza(Pizza pizza) {
-        return "Name: " + pizza.getName() + "\n" + "Ingredients: " + pizza.getIngredients() + "\n" +
-                "Description: " + pizza.getDescription() + "\n";
+        return "Name: " + pizza.getName() + "Ingredients: " + pizza.getIngredients() +  "Description: "+pizza.getDescription();
+
     }
 
 }

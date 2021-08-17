@@ -48,7 +48,7 @@ public class CustomerController {
 
     }
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<HttpStatus> postCustomer(@RequestBody Customer customerBody) {
         Optional<Customer> customer = customers.stream()
                 .filter(c -> c.getUsername().equals(customerBody.getUsername()))
@@ -62,7 +62,7 @@ public class CustomerController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PutMapping("")
+    @PutMapping
     public ResponseEntity<HttpStatus> putCustomer(@RequestBody Customer customerBody) {
         Optional<Customer> customer = customers.stream()
                 .filter(c -> c.getUsername().equals(customerBody.getUsername()))
@@ -91,6 +91,14 @@ public class CustomerController {
         );
 
         return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    private Optional<Customer> findCustomer(String username){
+
+        return customers.stream()
+                .filter(c -> c.getUsername().equals(username))
+                .findAny();
+
     }
 }
 

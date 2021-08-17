@@ -9,11 +9,8 @@ public class PizzaApp {
 
     public static void main(String[] args) {
 
-        try {
-            SpringApplication.run(PizzaApp.class, args);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
+        SpringApplication.run(PizzaApp.class, args);
+
     }
 
 }

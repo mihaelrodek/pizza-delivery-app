@@ -4,6 +4,6 @@ public interface Pizza {
 
     String getName();
     String getIngredients();
-
+    String getDescription();
 
 }

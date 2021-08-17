@@ -6,6 +6,6 @@ public interface PizzeriaService {
 
     String getAddress();
 
-    void makePizza(Pizza pizza);
+    String makePizza(Pizza pizza);
 
 }

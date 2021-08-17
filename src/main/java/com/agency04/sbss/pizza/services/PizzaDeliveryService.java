@@ -1,5 +1,6 @@
-package com.agency04.sbss.pizza;
+package com.agency04.sbss.pizza.services;
 
+import com.agency04.sbss.pizza.models.pizza.Pizza;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -31,3 +32,4 @@ public class PizzaDeliveryService {
     }
 
 }
+

@@ -1,8 +1,8 @@
-package com.agency04.sbss.pizza;
+package com.agency04.sbss.pizza.services.impl;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.agency04.sbss.pizza.models.pizza.Pizza;
+import com.agency04.sbss.pizza.services.PizzeriaService;
 import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;

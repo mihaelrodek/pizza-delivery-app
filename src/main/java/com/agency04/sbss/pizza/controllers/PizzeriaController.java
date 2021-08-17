@@ -30,7 +30,7 @@ public class PizzeriaController {
         return menu;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     @ResponseBody
     public PizzeriaResponse getPizzeria() {
         PizzeriaResponse pizzeria = new PizzeriaResponse();

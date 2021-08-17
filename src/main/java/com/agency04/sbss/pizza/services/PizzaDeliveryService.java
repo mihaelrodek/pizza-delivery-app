@@ -1,29 +1,45 @@
 package com.agency04.sbss.pizza.services;
 
 import com.agency04.sbss.pizza.models.pizza.Pizza;
+import com.agency04.sbss.pizza.models.rest.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class PizzaDeliveryService {
 
     private PizzeriaService pizzeriaService;
 
+    private List<Order> orders;
+
     public PizzaDeliveryService() {
-        System.out.println("PizzaDeliveryService: inside no-arg constructor");
+    }
+
+    @PostConstruct
+    public void loadData() {
+        orders = new ArrayList<>();
     }
 
     @Autowired
     public PizzaDeliveryService(PizzeriaService pizzeriaService) {
         this.pizzeriaService = pizzeriaService;
-        System.out.println("PizzaDeliveryService: inside arg constructor");
     }
 
-    @Autowired
     public void setPizzeriaService(@Qualifier("rajPizzeria") PizzeriaService pizzeriaService) {
-        System.out.println("PizzaDeliveryService: setPizzeriaService");
         this.pizzeriaService = pizzeriaService;
+    }
+
+    public PizzeriaService getPizzeriaService() {
+        return pizzeriaService;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
     public String orderPizza(Pizza pizza) {

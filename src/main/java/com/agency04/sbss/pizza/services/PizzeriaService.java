@@ -17,5 +17,4 @@ public interface PizzeriaService {
 
     List<Size> getSizes();
 
-
 }

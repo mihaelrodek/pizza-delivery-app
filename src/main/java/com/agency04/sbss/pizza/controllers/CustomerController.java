@@ -17,15 +17,15 @@ import java.util.Optional;
 @RequestMapping("/api/customer")
 public class CustomerController {
 
-    List<Customer> customers;
+    private List<Customer> customers;
 
     @PostConstruct
     public void loadData() {
         customers = new ArrayList<>();
 
-        customers.add(new Customer("mrodek", "Mihael", "Rodek", Sex.MALE,21));
-        customers.add(new Customer("pvrabec", "Petra", "Vrabec",Sex.FEMALE, 22));
-        customers.add(new Customer("dbek", "Dominik", "Bek",Sex.UNDEFINED, 20));
+        customers.add(new Customer("mrodek", "Mihael", "Rodek", Sex.MALE, 21));
+        customers.add(new Customer("pvrabec", "Petra", "Vrabec", Sex.FEMALE, 22));
+        customers.add(new Customer("dbek", "Dominik", "Bek", Sex.UNDEFINED, 20));
     }
 
     public CustomerController() {
@@ -41,40 +41,41 @@ public class CustomerController {
                 .filter(c -> c.getUsername().equals(username))
                 .findAny();
 
-        if (customer.isPresent()) {
-            return customer.get();
-        } else {
-            throw new PizzaException("Username not found");
-        }
+        if (customer.isEmpty())
+            throw new PizzaException("No customer with given username found.");
+
+        return customer.get();
+
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<HttpStatus> postCustomer(@RequestBody Customer customerBody) {
         Optional<Customer> customer = customers.stream()
                 .filter(c -> c.getUsername().equals(customerBody.getUsername()))
                 .findAny();
 
-        if (customer.isPresent()) {
-            throw new PizzaException("Customer already registered");
-        }
+        if (customer.isPresent())
+            throw new PizzaException("Customer with given username is already registered.");
+
 
         customers.add(customerBody);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PutMapping("/")
+    @PutMapping("")
     public ResponseEntity<HttpStatus> putCustomer(@RequestBody Customer customerBody) {
         Optional<Customer> customer = customers.stream()
                 .filter(c -> c.getUsername().equals(customerBody.getUsername()))
                 .findAny();
 
-        if (customer.isPresent()) {
-            customer.get().setName(customerBody.getName());
-            customer.get().setSurname(customerBody.getSurname());
-            customer.get().setAge(customerBody.getAge());
-        } else {
-            throw new PizzaException("Customer not registered");
-        }
+        if (customer.isEmpty())
+            throw new PizzaException("No customer with given username found.");
+
+        customer.get().setName(customerBody.getName());
+        customer.get().setSurname(customerBody.getSurname());
+        customer.get().setAge(customerBody.getAge());
+        customer.get().setSex(customerBody.getSex());
+
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
@@ -86,8 +87,9 @@ public class CustomerController {
 
         customer.ifPresentOrElse(
                 (value -> customers.remove(value)),
-                () -> { throw new PizzaException("Username not found"); }
+                () -> { throw new PizzaException("No customer with given username found."); }
         );
+
         return ResponseEntity.ok(HttpStatus.OK);
     }
 }

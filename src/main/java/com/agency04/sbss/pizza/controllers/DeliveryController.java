@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/delivery")
@@ -42,26 +43,30 @@ public class DeliveryController {
 
         customer.ifPresentOrElse(
                 (order::setCustomer),
-                () -> { throw new PizzaException("Customer not registered"); }
+                () -> {
+                    throw new PizzaException("Customer not registered");
+                }
         );
 
         Optional<Pizza> pizza = pizzeriaService.getPizzas().stream()
-                .filter(p -> p.getName().equals(orderForm.getPizzaForm().getPizza()))
+                .filter(p -> p.getName().equals(orderForm.getPizza()))
                 .findAny();
 
         pizza.ifPresentOrElse(
                 (order::setPizza),
-                () -> { throw new PizzaException("Pizza not available"); }
+                () -> {
+                    throw new PizzaException("Pizza not available");
+                }
         );
 
-        if (pizzeriaService.getSizes().contains(orderForm.getPizzaForm().getSize())) {
-            order.setSize(orderForm.getPizzaForm().getSize());
+        if (pizzeriaService.getSizes().contains(orderForm.getSize())) {
+            order.setSize(orderForm.getSize());
         } else {
             throw new PizzaException("Size not available");
         }
 
-        if (orderForm.getPizzaForm().getQuantity() > 0 && orderForm.getPizzaForm().getQuantity() <= 10) {
-            order.setQuantity(orderForm.getPizzaForm().getQuantity());
+        if (orderForm.getQuantity() > 0 && orderForm.getQuantity() <= 10) {
+            order.setQuantity(orderForm.getQuantity());
         } else {
             throw new PizzaException("Please insert valid quantity (1-10)");
         }
@@ -75,7 +80,7 @@ public class DeliveryController {
 
     @GetMapping("/list")
     public List<Order> getOrders() {
-        return pizzaDeliveryService.getOrders();
+        return pizzaDeliveryService.getOrders().stream().sorted().collect(Collectors.toList());
     }
 }
 

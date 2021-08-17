@@ -22,7 +22,7 @@ public class Customer {
         this.name = name;
         this.surname = surname;
         this.age = age;
-        this.sex=sex;
+        this.sex = sex;
     }
 
     public String getUsername() {

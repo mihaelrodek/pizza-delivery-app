@@ -4,9 +4,9 @@ import com.agency04.sbss.pizza.models.rest.MenuResponse;
 import com.agency04.sbss.pizza.models.rest.PizzeriaResponse;
 import com.agency04.sbss.pizza.services.PizzaDeliveryService;
 import com.agency04.sbss.pizza.services.PizzeriaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -15,6 +15,7 @@ public class PizzeriaController {
 
     private final PizzeriaService pizzeriaService;
 
+    @Autowired
     public PizzeriaController(PizzaDeliveryService pizzaDeliveryService) {
         this.pizzeriaService = pizzaDeliveryService.getPizzeriaService();
     }

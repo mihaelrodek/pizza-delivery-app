@@ -26,7 +26,7 @@ public class DomenicoPizzeria implements PizzeriaService {
         name = "Domenico";
         address = "Trg Slobode 7, Varaždin";
         this.pizzas = List.of(new MargheritaPizza());
-        this.sizes = List.of(Size.SMALL, Size.MEDIUM, Size.LARGE, Size.EXTRA_LARGE);
+        this.sizes = List.of(Size.SMALL, Size.MEDIUM, Size.LARGE);
     }
 
     @PreDestroy

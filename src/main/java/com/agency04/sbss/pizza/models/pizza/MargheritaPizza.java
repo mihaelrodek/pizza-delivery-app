@@ -1,10 +1,10 @@
 package com.agency04.sbss.pizza.models.pizza;
 
-import com.agency04.sbss.pizza.models.pizza.Pizza;
-
+import javax.persistence.Entity;
 import java.util.List;
 
-public class MargheritaPizza implements Pizza {
+@Entity
+public class MargheritaPizza extends Pizza {
 
     @Override
     public String getName() {
@@ -16,13 +16,13 @@ public class MargheritaPizza implements Pizza {
         return List.of(Ingredients.TOMATO_SAUCE, Ingredients.MOZZARELLA, Ingredients.OREGANO);
     }
 
-    @Override
-    public String getDescription() {
-        return "Classical margherita pizza without salami";
-    }
+   // @Override
+    // public String getDescription() {
+    //     return "Classical margherita pizza without salami";
+    // }
 
-    @Override
-    public Integer getPrice() {
-        return 40;
-    }
+    //  @Override
+    // public Integer getPrice() {
+    //     return 40;
+    // }
 }

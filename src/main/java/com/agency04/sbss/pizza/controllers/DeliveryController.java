@@ -21,14 +21,14 @@ public class DeliveryController {
         this.pizzaDeliveryService = pizzaDeliveryService;
     }
 
-    @PostMapping("/delivery/order")
-    public ResponseEntity<HttpStatus> postOrder(@RequestBody Delivery delivery) {
-        return pizzaDeliveryService.postOrder(delivery);
-    }
-
     @GetMapping("/delivery/list")
     public List<Delivery> getOrders() {
         return pizzaDeliveryService.getOrders();
+    }
+
+    @PostMapping("/delivery/order")
+    public ResponseEntity<HttpStatus> postOrder(@RequestBody Delivery delivery) {
+        return pizzaDeliveryService.postOrder(delivery);
     }
 }
 

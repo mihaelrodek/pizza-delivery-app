@@ -35,14 +35,14 @@ public class CustomerController {
         return pizzaDeliveryService.getCustomer(username);
     }
 
-    @PostMapping("/customer")
-    public ResponseEntity<HttpStatus> postCustomer(@RequestBody Customer customer) {
-        return pizzaDeliveryService.postCustomer(customer);
-    }
-
     @PutMapping("/customer")
     public ResponseEntity<HttpStatus> putCustomer(@RequestBody Customer customer) {
         return pizzaDeliveryService.putCustomer(customer);
+    }
+
+    @PostMapping("/customer")
+    public ResponseEntity<HttpStatus> postCustomer(@RequestBody Customer customer) {
+        return pizzaDeliveryService.postCustomer(customer);
     }
 
     @DeleteMapping("/customer/{username}")

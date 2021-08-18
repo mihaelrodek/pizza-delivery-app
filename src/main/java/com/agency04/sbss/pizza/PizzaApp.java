@@ -12,7 +12,6 @@ public class PizzaApp {
         SpringApplication.run(PizzaApp.class, args);
 
     }
-
 }
 
 

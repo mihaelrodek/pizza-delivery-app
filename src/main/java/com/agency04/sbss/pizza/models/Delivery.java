@@ -1,6 +1,5 @@
 package com.agency04.sbss.pizza.models;
 
-
 import com.agency04.sbss.pizza.models.pizza.PizzaOrder;
 import com.agency04.sbss.pizza.models.rest.Customer;
 

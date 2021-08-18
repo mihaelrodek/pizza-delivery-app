@@ -18,7 +18,6 @@ public class Pizza {
     @ElementCollection(targetClass = Ingredients.class)
     private List<Ingredients> ingredients;
 
-
     @JsonIgnore
     @OneToMany(mappedBy = "pizza")
     private List<PizzaOrder> pizzaOrders = new ArrayList<>();
@@ -32,7 +31,6 @@ public class Pizza {
         this.name = name;
         this.ingredients = ingredients;
     }
-
 
     public String getName() {
         return name;
@@ -75,5 +73,4 @@ public class Pizza {
         result = 31 * result + (ingredients != null ? ingredients.hashCode() : 0);
         return result;
     }
-
 }

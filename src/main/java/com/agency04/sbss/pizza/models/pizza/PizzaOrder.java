@@ -1,6 +1,5 @@
 package com.agency04.sbss.pizza.models.pizza;
 
-
 import com.agency04.sbss.pizza.models.Delivery;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

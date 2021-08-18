@@ -140,7 +140,6 @@ public class PizzaDeliveryService {
         }
 
         customerRepository.deleteById(username);
-
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
@@ -159,13 +158,13 @@ public class PizzaDeliveryService {
                     .orElseThrow()
             );
 
-            if (pizzaOrder.getQuantity() <= 0 || pizzaOrder.getQuantity() > 10) {
+            if (pizzaOrder.getQuantity() <= 0 || pizzaOrder.getQuantity() > 10)
                 throw new PizzaException("Please insert valid quantity (1-10)");
-            }
 
-            if (!pizzeriaService.getSizes().contains(pizzaOrder.getSize())) {
+
+            if (!pizzeriaService.getSizes().contains(pizzaOrder.getSize()))
                 throw new PizzaException("Size not available");
-            }
+
             temp.add(pizzaOrder);
 
             pizzaOrderRepository.save(pizzaOrder);
@@ -173,7 +172,6 @@ public class PizzaDeliveryService {
 
         for (PizzaOrder pizzaOrder : temp)
             delivery.addPizzaOrder(pizzaOrder);
-
 
         deliveryRepository.save(delivery);
 

@@ -2,8 +2,8 @@ package com.agency04.sbss.pizza.models.rest;
 
 import com.agency04.sbss.pizza.models.CustomerDetails;
 import com.agency04.sbss.pizza.models.Delivery;
-import com.agency04.sbss.pizza.models.Sex;
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;

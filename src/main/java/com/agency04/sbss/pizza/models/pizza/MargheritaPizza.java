@@ -1,7 +1,5 @@
 package com.agency04.sbss.pizza.models.pizza;
 
-import com.agency04.sbss.pizza.models.pizza.Pizza;
-
 import javax.persistence.Entity;
 import java.util.List;
 

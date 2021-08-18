@@ -4,7 +4,7 @@ import com.agency04.sbss.pizza.models.pizza.Pizza;
 
 import java.util.List;
 
-public class QuattroFormaggiPizza implements Pizza {
+public class QuattroFormaggiPizza extends Pizza {
 
     @Override
     public String getName() {
@@ -16,13 +16,13 @@ public class QuattroFormaggiPizza implements Pizza {
         return List.of(Ingredients.TOMATO_SAUCE, Ingredients.MOZZARELLA, Ingredients.PARMESAN, Ingredients.GORGONZOLA, Ingredients.ARTICHOKES, Ingredients.OREGANO);
     }
 
-    @Override
-    public String getDescription() {
-        return "Pizza for cheese lovers";
-    }
+    //@Override
+    //public String getDescription() {
+    //    return "Pizza for cheese lovers";
+    //}
 
-    @Override
-    public Integer getPrice() {
-        return 45;
-    }
+    //@Override
+    //public Integer getPrice() {
+    //   return 45;
+    // }
 }

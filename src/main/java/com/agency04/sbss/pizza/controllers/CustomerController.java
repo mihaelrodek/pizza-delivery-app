@@ -2,8 +2,11 @@ package com.agency04.sbss.pizza.controllers;
 
 
 import com.agency04.sbss.pizza.exceptions.PizzaException;
+import com.agency04.sbss.pizza.models.CustomerDetails;
 import com.agency04.sbss.pizza.models.Sex;
 import com.agency04.sbss.pizza.models.rest.Customer;
+import com.agency04.sbss.pizza.services.PizzaDeliveryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,92 +16,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
+import java.util.Optional;
+
 @RestController
-@RequestMapping("/api/customer")
+@RequestMapping("/api")
 public class CustomerController {
 
-    private List<Customer> customers;
+    private final PizzaDeliveryService pizzaDeliveryService;
 
-    @PostConstruct
-    public void loadData() {
-        customers = new ArrayList<>();
-
-        customers.add(new Customer("mrodek", "Mihael", "Rodek", Sex.MALE, 21));
-        customers.add(new Customer("pvrabec", "Petra", "Vrabec", Sex.FEMALE, 22));
-        customers.add(new Customer("dbek", "Dominik", "Bek", Sex.UNDEFINED, 20));
+    @Autowired
+    public CustomerController(PizzaDeliveryService pizzaDeliveryService) {
+        this.pizzaDeliveryService = pizzaDeliveryService;
     }
 
-    public CustomerController() {
-    }
-
-    public List<Customer> getCustomers() {
-        return customers;
-    }
-
-    @GetMapping("/{username}")
+    @GetMapping("/customer/{username}")
     public Customer getCustomer(@PathVariable String username) {
-        Optional<Customer> customer = customers.stream()
-                .filter(c -> c.getUsername().equals(username))
-                .findAny();
-
-        if (customer.isEmpty())
-            throw new PizzaException("No customer with given username found.");
-
-        return customer.get();
-
+        return pizzaDeliveryService.getCustomer(username);
     }
 
-    @PostMapping
-    public ResponseEntity<HttpStatus> postCustomer(@RequestBody Customer customerBody) {
-        Optional<Customer> customer = customers.stream()
-                .filter(c -> c.getUsername().equals(customerBody.getUsername()))
-                .findAny();
-
-        if (customer.isPresent())
-            throw new PizzaException("Customer with given username is already registered.");
-
-
-        customers.add(customerBody);
-        return ResponseEntity.ok(HttpStatus.OK);
+    @PostMapping("/customer")
+    public ResponseEntity<HttpStatus> postCustomer(@RequestBody Customer customer) {
+        return pizzaDeliveryService.postCustomer(customer);
     }
 
-    @PutMapping
-    public ResponseEntity<HttpStatus> putCustomer(@RequestBody Customer customerBody) {
-        Optional<Customer> customer = customers.stream()
-                .filter(c -> c.getUsername().equals(customerBody.getUsername()))
-                .findAny();
-
-        if (customer.isEmpty())
-            throw new PizzaException("No customer with given username found.");
-
-        customer.get().setName(customerBody.getName());
-        customer.get().setSurname(customerBody.getSurname());
-        customer.get().setAge(customerBody.getAge());
-        customer.get().setSex(customerBody.getSex());
-
-        return ResponseEntity.ok(HttpStatus.OK);
+    @PutMapping("/customer")
+    public ResponseEntity<HttpStatus> putCustomer(@RequestBody Customer customer) {
+        return pizzaDeliveryService.putCustomer(customer);
     }
 
-    @DeleteMapping("/{username}")
+    @DeleteMapping("/customer/{username}")
     public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable String username) {
-        Optional<Customer> customer = customers.stream()
-                .filter(c -> c.getUsername().equals(username))
-                .findAny();
-
-        customer.ifPresentOrElse(
-                (value -> customers.remove(value)),
-                () -> { throw new PizzaException("No customer with given username found."); }
-        );
-
-        return ResponseEntity.ok(HttpStatus.OK);
-    }
-
-    private Optional<Customer> findCustomer(String username){
-
-        return customers.stream()
-                .filter(c -> c.getUsername().equals(username))
-                .findAny();
-
+        return pizzaDeliveryService.deleteCustomer(username);
     }
 }
 

@@ -7,14 +7,13 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Pizza {
 
     @Id
     private String name;
 
     @Column
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Ingredients.class)
     private List<Ingredients> ingredients;
 

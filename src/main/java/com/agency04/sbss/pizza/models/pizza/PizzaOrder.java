@@ -9,10 +9,9 @@ import java.util.Objects;
 @Entity
 public class PizzaOrder {
 
-    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long pizzaOrderId;
+    private long id;
 
     @ManyToOne
     private Pizza pizza;
@@ -29,12 +28,12 @@ public class PizzaOrder {
     public PizzaOrder() {
     }
 
-    public long getPizzaOrderId() {
-        return pizzaOrderId;
+    public long getId() {
+        return id;
     }
 
-    public void setPizzaOrderId(long pizzaOrderId) {
-        this.pizzaOrderId = pizzaOrderId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Pizza getPizza() {
@@ -77,7 +76,7 @@ public class PizzaOrder {
 
         PizzaOrder that = (PizzaOrder) o;
 
-        if (pizzaOrderId != that.pizzaOrderId) return false;
+        if (id != that.id) return false;
         if (quantity != that.quantity) return false;
         if (!Objects.equals(pizza, that.pizza)) return false;
         return size == that.size;
@@ -85,7 +84,7 @@ public class PizzaOrder {
 
     @Override
     public int hashCode() {
-        int result = (int) (pizzaOrderId ^ (pizzaOrderId >>> 32));
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (pizza != null ? pizza.hashCode() : 0);
         result = 31 * result + quantity;
         result = 31 * result + (size != null ? size.hashCode() : 0);

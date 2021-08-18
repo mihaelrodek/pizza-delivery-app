@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/customer")
 public class CustomerController {
 
     private final PizzaDeliveryService pizzaDeliveryService;
@@ -18,22 +18,22 @@ public class CustomerController {
         this.pizzaDeliveryService = pizzaDeliveryService;
     }
 
-    @GetMapping("/customer/{username}")
+    @GetMapping("/{username}")
     public Customer getCustomer(@PathVariable String username) {
         return pizzaDeliveryService.getCustomer(username);
     }
 
-    @PutMapping("/customer")
+    @PutMapping
     public ResponseEntity<HttpStatus> putCustomer(@RequestBody Customer customer) {
         return pizzaDeliveryService.putCustomer(customer);
     }
 
-    @PostMapping("/customer")
+    @PostMapping
     public ResponseEntity<HttpStatus> postCustomer(@RequestBody Customer customer) {
         return pizzaDeliveryService.postCustomer(customer);
     }
 
-    @DeleteMapping("/customer/{username}")
+    @DeleteMapping("/{username}")
     public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable String username) {
         return pizzaDeliveryService.deleteCustomer(username);
     }

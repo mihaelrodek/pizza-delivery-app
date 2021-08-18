@@ -20,12 +20,12 @@ public class DeliveryController {
         this.pizzaDeliveryService = pizzaDeliveryService;
     }
 
-    @GetMapping("/delivery/list")
+    @GetMapping("/list")
     public List<Delivery> getOrders() {
         return pizzaDeliveryService.getOrders();
     }
 
-    @PostMapping("/delivery/order")
+    @PostMapping("/order")
     public ResponseEntity<HttpStatus> postOrder(@RequestBody Delivery delivery) {
         return pizzaDeliveryService.postOrder(delivery);
     }

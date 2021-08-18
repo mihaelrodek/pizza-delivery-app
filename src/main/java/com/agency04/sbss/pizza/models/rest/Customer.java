@@ -22,7 +22,7 @@ public class Customer {
     private CustomerDetails customerDetails;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Delivery> deliveries;
 
     public Customer() {
